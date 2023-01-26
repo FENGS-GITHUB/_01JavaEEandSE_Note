@@ -81,6 +81,9 @@ public class TestDemo {
 
         TestMethods.getpublicMethods(C1);
 
+        /*getDeclaredField(字段名)可以获取任何属性对象*/
+        Field id = C1.getDeclaredField("ID");
+
 
     }
 }
