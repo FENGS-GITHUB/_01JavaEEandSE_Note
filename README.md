@@ -1,2 +1,5 @@
 # LearnNote
-个人的学习笔记
+后端学习笔记
+-java
+-web
+-libs
