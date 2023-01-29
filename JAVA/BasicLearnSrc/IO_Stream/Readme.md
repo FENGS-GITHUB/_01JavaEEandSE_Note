@@ -303,5 +303,67 @@ BufferedOutputStream是OutputStream的包装流
 
 
 
-# 打印输出流
+# 高级输出打印流
 
+包括PrintStream和PrintWrtier两种流,二者之间的区别就在于PrintStream可以输出所有文件,PrintWriter只能输出文本文件.
+
+他们既可以作为节点流,也可以作为包装流.
+
+**PrintStream构造方法:**
+
+- PrintStream(File file)  依据File类对象创建一个PrintStream输出打印流
+- PrintStream(File file, String csn) 同上,并且手动设定字符集csn
+- PrintStream(OutputStream out)  包装一个输出流,PS:当输出流为追加时,打印流也时追加模式
+- PrintStream(String fileName) 根据路径创建打印流
+- PrintStream(String fileName, String csn) 同上,并手动设定字符集
+
+**PrintWriter构造方法:**
+
+ **实例方法:**
+
+写入:
+
+- PrintStream/PrintWriter append(char c) 在尾部打印流追加一个字符c,返回值为本身; 功能与
+- void println() 带回车的写入
+- void print() 不带回车的写入
+- void write(byte[] buf, int off, int len) 参考FileOutStream
+- void write(int b) 同上
+
+关闭刷新:
+
+- void close() 关闭流
+- void flush() 刷新该流的缓冲。 
+
+# 序列化与反序列化
+
+序列化就是将内存中对象脱离内存保存至硬盘的过程,该过程实现了对象信息的脱机保存,反序列化就是将保存在硬盘的对象文件重新传输到内存中,通过序列化版本号确定是哪个类的对象.
+
+可序列化类的定义:
+
+- 1需要实现Serializable接口,声明自己可以被序列化
+- 2设定serialVersionUID版本号为不可变值防止类代码改动,以至于无法反序列化
+- 3如果有不想被序列化的成员,可在对该成员进行triasnt修饰
+
+序列化和反序列化的实现是通过ObjectOutputStream和ObjectInputStream实现的,他们是字节输入输出流的包装流.
+
+## ObjectOutputStream:序列化
+
+构造方法:
+
+- ObjectOutputStream(OutputStream out)  创建写入指定 OutputStream 的 ObjectOutputStream。
+
+序列化:
+
+- void writeObject(Object obj) 将对象序列化
+
+
+
+## ObjectInputStream:反序列化
+
+构造方法:
+
+- ObjectInputStream(InputStream in) 创建写入指定 InputStream的ObjectInputStream
+
+反序列化:
+
+- readObject() 从 ObjectInputStream 读取对象。
